@@ -66,7 +66,7 @@ function moveImages(e) {
       duration: 1.4,
       x: xPos * 20 * modifier(index),
       y: yPos * 30 * modifier(index),
-      rotationY: -(xPos * 35),
+      rotationY: -(xPos * 25),
       rotationX: -(yPos * 10),
       ease: 'power3.out'
     });
@@ -78,7 +78,7 @@ function moveImages(e) {
       duration: 1.4,
       x: xPos * 20 * modifier(index),
       y: -yPos * 30 * modifier(index),
-      rotationY: -(xPos * 35),
+      rotationY: -(xPos * 25),
       rotationX: -(yPos * 10),
       ease: 'power3.out'
     });
