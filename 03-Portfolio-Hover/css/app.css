@@ -1,0 +1,114 @@
+:root {
+  --text-color: white;
+  --text-dark-color: #202020;
+  --header-height: 100px;
+  --burger-width: 40px;
+  --font-headings: Georgia, serif;
+
+  --bcg-green: #ACB7AE;
+  --bcg-lightgreen: #a6b3b3;
+  --bcg-lightbrown: #b0a7a4;
+  --bcg-lightblue: #a3abb1;
+
+  --bcg-loaderblue: #758A94;
+  --bcg-loaderbluedark: #566C76;
+
+  --loader-width: 27.36vw;
+  --loader-height: 50vh;
+
+  --v-spacing: 10vh;
+  --h-gutter: 6.6vw;  
+
+  --easing: cubic-bezier(0.5, 0.7, 0.4, 1);
+}
+
+body {
+  font: 16px/1.7 'Source Sans Pro', Helvetica, Helvetica Neue, Arial, sans-serif;
+  color: var(--text-dark-color);
+}
+
+/* =Main */
+main {
+  z-index: 1;
+  position: relative;
+}
+
+/* =Portfolio */
+.portfolio {
+  margin-top: var(--v-spacing);
+}
+.portfolio .chapter {
+  color: var(--text-dark-color);
+  top: 0;
+}
+.portfolio__categories {
+  display: flex;
+  flex-direction: column;
+}
+.portfolio__categories a {
+  font-family: var(--font-headings);
+  color: var(--text-dark-color);
+  text-decoration: none;
+  font-size: 5.4vw;
+  margin: auto;
+  letter-spacing: 0.2vw;
+  line-height: 1.5;
+}
+.portfolio__categories a:hover {
+  z-index: 1;
+}
+.portfolio__image--l,
+.portfolio__image--s  {
+  pointer-events: none; /* important to be able to hover over links under the image */
+  position: absolute;
+  width: 28vw;
+  top: 11vh;
+  left: 24vw;
+  overflow: hidden;
+  background-color: #000;
+  visibility: hidden;
+}
+.portfolio__image--l {
+  top: 0vh;
+  padding-bottom: 41.66vw;
+}
+.portfolio__image--s {
+  width: 15vw;
+  top: 11vh;
+  left: 54vw;
+  padding-bottom: 20vw;
+}
+.image_inside {
+  position: absolute;
+  opacity: 0.8;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 115%;
+  background-size: cover;
+}
+
+.fill-background {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+/* ==========================================================================
+  Media Queries
+ ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}
+
+@media only screen and (min-width: 1140px) {
+
+}
