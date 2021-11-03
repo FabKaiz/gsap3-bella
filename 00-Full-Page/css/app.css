@@ -172,6 +172,18 @@ header h1 {
 header h1 span {
   display: block;
 }
+.perspective__allbrowser--left {
+  perspective: 1000px;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.perspective__allbrowser--right {
+  perspective: 1000px;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
 .subtitle {
   z-index: 1;
   font-size: 1.3vw;
@@ -294,7 +306,41 @@ header h1 span {
   width: 16vw;
   padding-bottom: 20vw;
   z-index: 1;
+}
 
+/* SAFARI perspective bug fix */
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+    .hg__left .hg__image:nth-child(1),
+    .hg__right .hg__image:nth-child(1) {
+      transform: translateZ(-68px);
+      z-index: 1;
+    }
+    .hg__left .hg__image:nth-child(2),
+    .hg__right .hg__image:nth-child(2) {
+      transform: translateZ(-20px);
+      z-index: 2;
+    }
+
+    .hg__left .hg__image:nth-child(3),
+    .hg__right .hg__image:nth-child(3) {
+      transform: translateZ(8px);
+      z-index: 3;
+    }
+
+    .perspective__allbrowser--left {
+      perspective: 2000px;
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+    .perspective__allbrowser--right {
+      perspective: 2000px;
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
 }
 
 /* =Reveal Gallery */
