@@ -88,6 +88,9 @@ body {
   font-weight: 300;
   letter-spacing: .03vw;
 }
+.rg__text--copy p {
+  margin: 0;
+}
 .rg__column::before {
   display: block;
   position: absolute;
