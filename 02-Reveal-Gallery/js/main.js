@@ -64,16 +64,6 @@ function createHoverReveal(e) {
   return tl;
 }
 
-// function init(){
-
-//   initHoverReveal();
-
-// }
-
-// window.addEventListener('load', function(){
-//     init();
-// });
-
 // define a breakpoint
 const mq = window.matchMedia("(min-width: 768px)");
 
