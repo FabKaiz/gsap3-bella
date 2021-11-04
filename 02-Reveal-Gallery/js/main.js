@@ -6,12 +6,12 @@ function initHoverReveal() {
   sections.forEach(section => {
     
     // Get the component for the animation
-    const imageBlock = section.querySelector('.rg__image');
-    const mask = section.querySelector('.rg__image--mask');
+    section.imageBlock = section.querySelector('.rg__image');
+    section.mask = section.querySelector('.rg__image--mask');
 
     // Reset the inital position
-    gsap.set(imageBlock, { yPercent: -101 });
-    gsap.set(mask, { yPercent: -101 });
+    gsap.set(section.imageBlock, { yPercent: -101 });
+    gsap.set(section.mask, { yPercent: -101 });
 
     //add event listeners to each section
     section.addEventListener('mouseenter', createHoverReveal);
@@ -23,7 +23,26 @@ function initHoverReveal() {
 
 function createHoverReveal(e) {
 
-  console.log(e.type);
+  const { imageBlock, mask } = e.target;
+
+  const tl = gsap.timeline({
+    defaults: {
+      duration: 0.7,
+      ease: 'power4.out'
+    }
+  });
+
+  if (e.type === 'mouseenter') {
+    tl.to([mask, imageBlock], { yPercent: 0 });
+
+  } else if (e.type === 'mouseleave') {
+
+    tl.to(mask, { yPercent: 100 });
+    tl.to(imageBlock, { yPercent: -101 }, 0);
+
+
+  }
+  return tl;
 
 }
 
