@@ -23,6 +23,22 @@ function initImageParallax() {
 
 }
 
+// Get viewport height
+const getVh = () => {
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+  return vh;
+}
+
+// Get viewport width
+const getVw = () => {
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  return vw;
+}
+
+const updateBodyColor = (color) => {
+  document.documentElement.style.setProperty('--bcg-fill-color', color)
+}
+
 function initPinSteps() {
 
   ScrollTrigger.create({
@@ -31,7 +47,24 @@ function initPinSteps() {
     endTrigger: '#stage4',
     end: 'center center',
     pin: true,
-    markers: true,
+  })
+
+  gsap.utils.toArray('.stage').forEach((stage, index) => {
+
+    const navLinks = gsap.utils.toArray('.fixed-nav li');
+
+    ScrollTrigger.create({
+      trigger: stage,
+      start: 'top center',
+      end: () => `+=${stage.clientHeight + getVh() / 10}`,
+      toggleClass: {
+        targets: navLinks[index],
+        className: 'is-active'
+      },
+      onEnter: () => updateBodyColor(stage.dataset.color),
+      onEnterBack: () => updateBodyColor(stage.dataset.color),
+    })
+
   })
 
 }
