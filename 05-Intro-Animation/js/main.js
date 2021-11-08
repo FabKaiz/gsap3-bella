@@ -10,13 +10,19 @@ const initLoader = () => {
   const mask = select('.loader__image--mask');
   const line1 = select('.loader__title--mask:nth-child(1) span');
   const line2 = select('.loader__title--mask:nth-child(2) span');
+  const lines = selectAll('.loader__title--mask');
+  const loader = select('.loader');
+  const loaderContent = select('.loader__content');
+ 
 
   const tlLoaderIn = gsap.timeline({
     defaults: {
       duration: 1.1,
-      ease: 'Power2.out'
-    }
+      ease: 'power2.out'
+    },
+    onComplete: () => select('body').classList.remove('is-loading')
   });
+
   tlLoaderIn
     .from(loaderInner, {
       scaleY: 0,
@@ -25,8 +31,25 @@ const initLoader = () => {
     .addLabel('revealImage')
     .from(mask, { yPercent: 100 }, 'revealImage-=0.6')
     .from(image, { yPercent: -90 }, 'revealImage-=0.6')
+    .from([line1, line2], { y: 100, stagger: 0.1 }, 'revealImage-=0.4');  // tween for lines animating in
 
-    
+  const tlLoaderOut = gsap.timeline({
+    defaults: {
+      duration: 1.2,
+      ease: 'power2.inOut'
+    },
+    delay: 1
+  });
+
+  tlLoaderOut
+    .to(lines, { yPercent: -500, stagger: 0.2 }, 0)
+    .to([loader, loaderContent], { yPercent: -100 }, 0.2)
+    .from('#main', { y: 150 }, 0);
+
+  const tlLoader = gsap.timeline();
+  tlLoader
+    .add(tlLoaderIn)
+    .add(tlLoaderOut)
 
 }
 
