@@ -1,11 +1,11 @@
 gsap.registerPlugin(ScrollTrigger);
 
 function init(){
-    
-    // start here
+
+  // start here
 
 }
 
 window.addEventListener('load', function(){
-    init();
+  init();
 });

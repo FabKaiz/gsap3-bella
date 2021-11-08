@@ -27,6 +27,18 @@ body {
   color: var(--text-dark-color);
 }
 
+/* hide page content by default */
+.is-loading #main,
+.is-loading .logo,
+.is-loading .burger,
+.is-loading .main-nav,
+.is-loading .fill-background {
+  display: none;
+}
+.is-loading {
+  background-color: var(--bcg-loaderblue);
+}
+
 /* =Top Nav */
 .logo {
   position: fixed;
@@ -286,7 +298,6 @@ header h1 span {
   top: 0;
   left: 0;
   width: 100%;
-  visibility: hidden;
   overflow: hidden;
 }
 .loader__mask {
@@ -298,6 +309,8 @@ header h1 span {
   height: 100%;
   background-color: var(--bcg-loaderblue);
   overflow: hidden;
+  background: var(--bcg-loaderblue) url('../img/img_logo.svg') no-repeat center;
+  background-size: 155px 155px;
 }
 .loader .inner,
 .loader__content .inner {
@@ -313,6 +326,7 @@ header h1 span {
   justify-content: center;
   align-items: center;
   background: transparent;
+  visibility: hidden;
 }
 .loader__title {
   font-size: 7vw;
