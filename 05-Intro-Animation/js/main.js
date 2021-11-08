@@ -49,7 +49,7 @@ function updateProgress( value ) {
 // do whatever you want when all images are loaded
 imgLoad.on( 'done', function( instance ) {
   // we will simply init our loader animation onComplete
-  gsap.set(progressBar, {autoAlpha: 0, onComplete: initLoader});
+  gsap.set(progressBar, {autoAlpha: 0, onComplete: initPageTransitions});
 });
 
 const initLoader = () => {
@@ -100,6 +100,35 @@ const initLoader = () => {
     .add(tlLoaderIn)
     .add(tlLoaderOut)
 
+}
+
+function pageTransitionIn() {
+  console.log('pageTransitionIn');
+  return gsap.to('.transition', {duration: 1, yPercent: -100, ease: 'power1.inOut'});
+}
+
+function pageTransitionOut() {
+  console.log('pageTransitionOut');
+  return gsap.to('.transition', {duration: 1, yPercent: 0, ease: 'power1.inOut'});
+}
+
+function initPageTransitions() {
+  barba.init({
+      transitions: [{
+          once() {
+              // Do something once on the initial page load
+              initLoader();
+          },
+          async leave() {
+              // Animate loading screen in
+              await pageTransitionIn();
+          },
+          enter() {
+              // Animate loading screen away
+              pageTransitionOut();
+          }
+      }]
+  });
 }
 
 // function init(){
