@@ -1,17 +1,30 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// Query selector shortcut
+const select = (e) => document.querySelector(e);
+const selectAll = (e) => document.querySelectorAll(e);
+
+const loader = select('.loader');
+const loaderInner = select('.loader .inner');
+const progressBar = select('.loader .progress');
+
+
+// Show loader on page load
+gsap.set(loader, { autoAlpha: 1 })
+
+// Scale loader down
+gsap.set(loaderInner, { scaleY: 0.005, transformOrigin: 'bottom' });
+
+// Make a tween that scales the laoder
+gsap.to(progressBar, { scaleX: 0, ease: 'none', transformOrigin: 'right' })
+
 const initLoader = () => {
 
-  const select = (e) => document.querySelector(e);
-  const selectAll = (e) => document.querySelectorAll(e);
-  
-  const loaderInner = select('.loader .inner');
   const image = select('.loader__image img');
   const mask = select('.loader__image--mask');
   const line1 = select('.loader__title--mask:nth-child(1) span');
   const line2 = select('.loader__title--mask:nth-child(2) span');
   const lines = selectAll('.loader__title--mask');
-  const loader = select('.loader');
   const loaderContent = select('.loader__content');
  
 
@@ -24,7 +37,7 @@ const initLoader = () => {
   });
 
   tlLoaderIn
-  .set([loader, loaderContent], { autoAlpha: 1 })
+  .set(loaderContent, { autoAlpha: 1 })
     .from(loaderInner, {
       scaleY: 0,
       transformOrigin: 'bottom'
@@ -54,12 +67,12 @@ const initLoader = () => {
 
 }
 
-function init(){
+// function init(){
 
-  initLoader();
+//   initLoader();
 
-}
+// }
 
-window.addEventListener('load', function(){
-  init();
-});
+// window.addEventListener('load', function(){
+//   init();
+// });

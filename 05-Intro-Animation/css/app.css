@@ -321,6 +321,15 @@ header h1 span {
 }
 .loader .inner {
   background-color: var(--bcg-loaderbluedark);
+  position: relative;
+}
+.loader .progress {
+  background-color: var(--bcg-lightblue);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--loader-width);
+  height: var(--loader-height);
 }
 .loader__content {
   z-index: 5;
