@@ -140,7 +140,7 @@ function pageTransitionOut({container}) {
 
 function initPageTransitions() {
 
-  //Add the cursor loading class before the transition starts
+  // Add the cursor loading class before the transition starts
   barba.hooks.before(() => {
     document.querySelector('html').classList.add('is-transitioning');
   });

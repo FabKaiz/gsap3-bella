@@ -66,7 +66,7 @@ function createPortfolioMove(e) {
   // Move small image
   gsap.to(smallImage, {
     duration: 1.5,
-    y: -getPortfolioOffset(clientY) / 2.5,
+    y: -getPortfolioOffset(clientY) / 3,
     ease: 'Power3.out',
   })
 
