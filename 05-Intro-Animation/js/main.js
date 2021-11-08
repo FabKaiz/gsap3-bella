@@ -7,7 +7,7 @@ const selectAll = (e) => document.querySelectorAll(e);
 const loader = select('.loader');
 const loaderInner = select('.loader .inner');
 const progressBar = select('.loader .progress');
-
+const loaderMask = select('.loader__mask')
 
 // Show loader on page load
 gsap.set(loader, { autoAlpha: 1 })
@@ -103,13 +103,37 @@ const initLoader = () => {
 }
 
 function pageTransitionIn() {
+
   console.log('pageTransitionIn');
-  return gsap.to('.transition', {duration: 1, yPercent: -100, ease: 'power1.inOut'});
+  // Timeline to stretch the loader over the whole screen
+  const tl = gsap.timeline({
+    defaults: {
+      duration: 0.7,
+      ease: 'power1.inOut'
+    }
+  });
+  tl
+    .set(loaderInner, { autoAlpha: 0 })
+    .fromTo(loader, { yPercent: -100 },{ yPercent: 0 })
+    .fromTo(loaderMask, { yPercent: 65 },{ yPercent: 0 }, 0);
+
+  return tl;
 }
 
 function pageTransitionOut() {
+
   console.log('pageTransitionOut');
-  return gsap.to('.transition', {duration: 1, yPercent: 0, ease: 'power1.inOut'});
+  // Timeline to move the loader away down
+  const tl = gsap.timeline({
+    defaults: {
+      duration: 0.7,
+      ease: 'power1.inOut'
+    }
+  });
+  tl.to(loader, { yPercent: 100 })
+  tl.to(loaderMask, { yPercent: -75 }, 0)
+
+  return tl;
 }
 
 function initPageTransitions() {
