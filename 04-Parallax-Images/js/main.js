@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function initImageParallax() {
 
@@ -23,18 +23,6 @@ function initImageParallax() {
 
 }
 
-// Get viewport height
-const getVh = () => {
-  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-  return vh;
-}
-
-// Get viewport width
-const getVw = () => {
-  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-  return vw;
-}
-
 const updateBodyColor = (color) => {
   document.documentElement.style.setProperty('--bcg-fill-color', color)
 }
@@ -48,6 +36,19 @@ function initPinSteps() {
     end: 'center center',
     pin: true,
   })
+
+    // Get viewport height
+  const getVh = () => {
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    return vh;
+  }
+
+  // Get viewport width
+  const getVw = () => {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    return vw;
+  }
+
 
   gsap.utils.toArray('.stage').forEach((stage, index) => {
 
@@ -69,9 +70,28 @@ function initPinSteps() {
 
 }
 
+function initScrollTo() {
+
+  // Find all links and animate them to the right position
+  gsap.utils.toArray('.fixed-nav a').forEach((link) => {
+
+    const target = link.getAttribute('href');
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      gsap.to(window, {duration: 0.8, scrollTo: target, ease: 'Power2.out'});
+    })
+
+  });
+
+}
+
 function init() {
+
   initImageParallax();
   initPinSteps();
+  initScrollTo();
+
 }
 
 window.addEventListener("load", function () {
