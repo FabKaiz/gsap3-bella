@@ -88,12 +88,21 @@ function initScrollTo() {
 
 function init() {
 
-  initImageParallax();
-  initPinSteps();
-  initScrollTo();
+  // initImageParallax();
+  // initPinSteps();
+  // initScrollTo();
 
 }
 
 window.addEventListener("load", function () {
   init();
 });
+
+let container = document.querySelector('#scroll-container');
+let height;
+
+function setHeight() {
+  height = container.clientHeight;
+  document.body.style.height = `${height}px`;
+}
+ScrollTrigger.addEventListener('refreshInit', setHeight);
