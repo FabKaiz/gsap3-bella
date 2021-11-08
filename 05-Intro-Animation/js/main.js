@@ -102,54 +102,72 @@ const initLoader = () => {
 
 }
 
-function pageTransitionIn() {
+function pageTransitionIn({container}) {
 
-  console.log('pageTransitionIn');
   // Timeline to stretch the loader over the whole screen
   const tl = gsap.timeline({
     defaults: {
-      duration: 0.7,
+      duration: 0.8,
       ease: 'power1.inOut'
     }
   });
   tl
     .set(loaderInner, { autoAlpha: 0 })
     .fromTo(loader, { yPercent: -100 },{ yPercent: 0 })
-    .fromTo(loaderMask, { yPercent: 65 },{ yPercent: 0 }, 0);
+    .fromTo(loaderMask, { yPercent: 65 },{ yPercent: 0 }, 0)
+    .to(container, {y: 150}, 0);
 
   return tl;
 }
 
-function pageTransitionOut() {
+function pageTransitionOut({container}) {
 
-  console.log('pageTransitionOut');
   // Timeline to move the loader away down
   const tl = gsap.timeline({
     defaults: {
-      duration: 0.7,
+      duration: 0.8,
       ease: 'power1.inOut'
     }
   });
-  tl.to(loader, { yPercent: 100 })
-  tl.to(loaderMask, { yPercent: -75 }, 0)
+  tl
+    .to(loader, { yPercent: 100 })
+    .to(loaderMask, { yPercent: -75 }, 0)
+    .from(container, {y: -150}, 0);
+
 
   return tl;
 }
 
 function initPageTransitions() {
+
+  //Add the cursor loading class before the transition starts
+  barba.hooks.before(() => {
+    document.querySelector('html').classList.add('is-transitioning');
+  });
+
+  // Remove the cursor loading class after the transition finishes
+  barba.hooks.after(() => {
+    document.querySelector('html').classList.remove('is-transitioning');
+  });
+
+  // scroll to the top of the page
+  barba.hooks.enter(() => {
+    window.scrollTo(0, 0);
+  });
+
   barba.init({
       transitions: [{
           once() {
               // Do something once on the initial page load
               initLoader();
           },
-          async leave() {
+          async leave({current}) {
               // Animate loading screen in
-              await pageTransitionIn();
+              await pageTransitionIn(current);
           },
-          enter() {
+          enter({next}) {
               // Animate loading screen away
-              pageTransitionOut();
+              pageTransitionOut(next);
           }
       }]
   });

@@ -28,6 +28,11 @@ body {
   overflow-y: scroll;
 }
 
+.is-transitioning {
+  pointer-events: none;
+  cursor: progress;
+}
+
 /* hide page content by default */
 .is-loading #main,
 .is-loading .logo,
