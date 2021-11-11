@@ -631,13 +631,14 @@ section {
   margin: 0 var(--h-gutter) var(--v-spacing) var(--h-gutter);
 }
 .blog__image {
-  margin: 0 50% 0 16.6%;
+  margin: 0 30% 0 6.6%;
   padding-bottom: 50%;
   position: relative;
   overflow: hidden;
 }
 .blog__image img {
   opacity: 1;
+  filter: brightness(70%);
   height: 120%;
   top: -20%;
 }
@@ -647,7 +648,7 @@ section {
 }
 .blog__text {
   position: absolute;
-  left: calc(50vw + var(--h-gutter));
+  left: calc(60vw + var(--h-gutter));
   right: calc(var(--h-gutter) * 4);
   top: calc(50% + (var(--v-spacing) / 2)); /* 50% not 50vh becasue blog is not 100vh */
   transform: translateY(-50%);
