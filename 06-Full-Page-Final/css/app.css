@@ -15,7 +15,7 @@
   --bcg-fill-color: var(--bcg-green);
 
   --loader-width: 27.36vw;
-  --loader-height: 50vh;
+  --loader-height: 70vh;
 
   --v-spacing: 10vh;
   --h-gutter: 6.6vw;  
@@ -511,7 +511,9 @@ header h1 span {
 }
 .loader__image {
   width: var(--loader-width);
+  height: 20vh;
   padding-bottom: 50vh;
+  /* padding: 0vh 0 70vh 0; */
   overflow: hidden;
   position: relative;
 }
