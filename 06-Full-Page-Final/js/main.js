@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 import { hoverReveal, portfolioHover, updateBodyColor } from './initBarba.js';
-import { initBurger } from './burger.js'
+import { initBurger } from './burger-menu.js'
 
 let bodyScrollBar;
 
