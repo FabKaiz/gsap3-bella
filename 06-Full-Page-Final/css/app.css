@@ -30,7 +30,7 @@ body {
 /* hide page content by default */
 .is-loading #main,
 .is-loading .logo,
-.is-loading .burger,
+.is-loading .burger-menu,
 .is-loading .main-nav,
 .is-loading .fill-background {
   display: none; 
@@ -113,6 +113,58 @@ body {
   height: 40px;
   background: none;
 }
+.burger-menu {
+  width: var(--burger-width);
+  height: var(--header-height);
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: var(--h-gutter);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  transition: all 0.3s var(--easing);
+  transform: translateX(0);
+}
+.burger-menu span {
+  background-color: #fff;
+  width: var(--burger-width);
+  height: 2px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%);
+  transition: all 0.3s var(--easing);
+  z-index: 2;
+}
+.burger-menu span::before, .burger-menu span::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+}
+.burger-menu span::before {
+  transform: translateY(-10px);
+  transition: all 0.3s var(--easing);
+}
+.burger-menu span::after {
+  transform: translateY(10px);
+  transition: all 0.3s var(--easing);
+}
+/* on click */
+.burger-menu.active span {
+  background-color: transparent;
+}
+.burger-menu.active span::before {
+  transform: translateY(0) rotate(45deg);
+}
+.burger-menu.active span::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
 
 /* =Main Navigation */
 .main-nav {
@@ -162,7 +214,7 @@ body {
 }
 
 /* Reveal logo and move buger when the user scrolls */
-.has-scrolled .burger {
+.has-scrolled .burger-menu {
   transform: translateX(100%)
 }
 .has-scrolled .logo__img {

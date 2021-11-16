@@ -1,5 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
-import { hoverReveal, portfolioHover, updateBodyColor } from './initBarba.js'
+import { hoverReveal, portfolioHover, updateBodyColor } from './initBarba.js';
+import { initBurger } from './burger.js'
 
 let bodyScrollBar;
 
@@ -219,6 +220,7 @@ function initContent() {
   initImageParallax();
   initPinSteps();
   initScrollTo();
+  initBurger();
 }
 
 // Smoooth Scrollbar
