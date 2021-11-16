@@ -674,7 +674,14 @@ section {
   right: calc(50vw + var(--h-gutter));
   left: 16.6%;
 }
-
+.source-links {
+  text-decoration: none;
+  color: #566C76;
+  transition: color 0.2s linear;
+}
+.source-links:hover{
+  color: #334046;
+}
 /* =How we work */
 .how-we-work .chapter {
   top: calc(var(--v-spacing)*2);
