@@ -24,8 +24,6 @@ const initBurger = () => {
 
 const openNav = () => {
   // Show the menu
-  // viewport.style.height = 0;
-  // viewport.style.width == 0;
   burgerNav.style.display = 'block';
   burgerNav.style.opacity = 1;
 
