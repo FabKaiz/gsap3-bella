@@ -814,6 +814,9 @@ section {
   margin: 0 calc(30vw + var(--h-gutter)) var(--v-spacing) 33.33vw;
 }
 /* =Footer */
+.footer {
+  height: 200px;
+}
 
 /* ==========================================================================
   Media Queries
