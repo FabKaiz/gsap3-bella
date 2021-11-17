@@ -218,7 +218,7 @@ body {
   display: none;
 }
 .split-text {
-  /* display: inline-block; */
+  display: inline-block;
   transform: translateY(130px);
   opacity: 0;
 }
@@ -227,8 +227,13 @@ body {
   position: relative;
   text-transform: uppercase;
   display: flex;
+  will-change: transform;
 }
-
+.menu-item > div {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
 .menu-item::after {
   counter-increment: menucounter;
   content: '- 0' counters(menucounter, '.', decimal-leading-zero);
@@ -241,26 +246,30 @@ body {
   pointer-events: none;
   display: block;
   position: relative;
+  line-height: 1;
 }
 .menu-item > div:nth-child(1) span {
   will-change: transform;
   transform-style: preserve-3d;
-  transition: 0.5s;
-  transition-delay: calc(0.05 * var(--index));
+  transition: 0.3s;
+  transition-delay: calc(0.04s * var(--index));
   transform-origin: bottom;
   display: inline-block;
+  min-width: 2vw;
 }
 .menu-item > div:nth-child(2) span {
   will-change: transform;
   transform-style: preserve-3d;
-  transition: 0.5s;
-  transition-delay: calc(0.05 * var(--index));
+  transition: 0.3s;
+  transition-delay: calc(0.04s * var(--index));
   transform-origin: top;
   display: inline-block;
-  transform: translate3d(0, -100%, 0) rotateX(-90deg);
+  transform: translate3d(0, 100%, 0) rotateX(90deg);
+  min-width: 2vw;
 }
 .menu-item:hover > div:nth-child(1) span {
   transform: translate3d(0, -100%, 0) rotateX(-90deg);
+  color: transparent;
 }
 .menu-item:hover > div:nth-child(2) span {
   transform: translate3d(0, 0%, 0) rotateX(0deg);

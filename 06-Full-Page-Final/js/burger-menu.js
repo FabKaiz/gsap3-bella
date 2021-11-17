@@ -88,6 +88,7 @@ const initBurger = () => {
   }
 
   const menuHover = () => {
+
     const menuItems = [...document.querySelectorAll('.menu-item')];
     console.log(menuItems);
 
@@ -97,10 +98,17 @@ const initBurger = () => {
       console.log(word);
       item.children[0].innerHTML = '';
       word.forEach((letter, index) => {
-        item.children[0].innerHTML += `<span style="--index: ${index};"> ${letter}</span>`;
+        console.log(letter);
+        item.children[0].innerHTML += `<span style="--index: ${index};">${letter.trim() === '' ? '  ' : letter}</span>`;
       })
+      let cloneDiv = item.children[0].cloneNode(true);
+      cloneDiv.style.position = 'absolute';
+      cloneDiv.style.left = '0';
+      cloneDiv.style.top = '0';
+      item.appendChild(cloneDiv);
 
     })
+
   }
 
   menuHover();
