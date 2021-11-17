@@ -208,9 +208,6 @@ body {
 
   /* overflow: hidden; */
 }
-.burger-nav a:hover{
-  color: #ACB7AE
-}
 .burger-nav--container {
   overflow: hidden;
   width: 100%;
@@ -221,8 +218,8 @@ body {
   display: none;
 }
 .split-text {
-  display: inline-block;
-  transform: translateY(80%);
+  /* display: inline-block; */
+  transform: translateY(130px);
   opacity: 0;
 }
 /* Menu text 3d rotation */
@@ -235,17 +232,39 @@ body {
 .menu-item::after {
   counter-increment: menucounter;
   content: '- 0' counters(menucounter, '.', decimal-leading-zero);
-  /* padding-left: var(--padding-left); */
   position: absolute;
   right: var(--padding-left);
   top: 0;
   opacity: var(--counter-opacity);
 }
 .menu-item-text {
-
+  pointer-events: none;
+  display: block;
+  position: relative;
 }
-
-
+.menu-item > div:nth-child(1) span {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+  transition-delay: calc(0.05 * var(--index));
+  transform-origin: bottom;
+  display: inline-block;
+}
+.menu-item > div:nth-child(2) span {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+  transition-delay: calc(0.05 * var(--index));
+  transform-origin: top;
+  display: inline-block;
+  transform: translate3d(0, -100%, 0) rotateX(-90deg);
+}
+.menu-item:hover > div:nth-child(1) span {
+  transform: translate3d(0, -100%, 0) rotateX(-90deg);
+}
+.menu-item:hover > div:nth-child(2) span {
+  transform: translate3d(0, 0%, 0) rotateX(0deg);
+}
 
 /* =Main Navigation */
 .main-nav {

@@ -36,9 +36,16 @@ const initBurger = () => {
       .fromTo(burgerNav, { yPercent: -100 }, { yPercent: 0 }, 0)
       .to(burgerNav, {duration: 2, ease: "power4.out", backgroundSize: "100% 100%" }, 0.6)
       // Animate the navigation links
-      .to(splitText, {duration: 0.8, y: '0%', stagger: 0.1, autoAlpha: 1 }, 0.3)
+      .to(splitText, {duration: 0.8, y: '0', stagger: 0.1 }, 0.4)
+      .to(splitText, {duration: 0.6, stagger: 0.1, autoAlpha: 1 }, 0.6)
       // Move and show the counter ::after element
-      .to(menuCounterAfter, {duration: 0.5, stagger: 0.1, '--padding-left': '-13vw', '--counter-opacity': 0.5 }, 0.8)
+      .to(menuCounterAfter, {
+        duration: 0.6,
+        stagger: 0.1,
+        '--padding-left':
+        '-13vw',
+        '--counter-opacity': 0.5
+      }, 1.3)
 
     return tl;
 
@@ -65,7 +72,7 @@ const initBurger = () => {
       // Animate the navigation links back to normal
       .to(splitText, {
         duration: 0.1,
-        y: '80%',
+        y: '100px',
         autoAlpha: 0
       }, 0.7)
       // hide and move back the counter ::after element
