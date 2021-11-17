@@ -36,6 +36,7 @@ const initBurger = () => {
     tl.set(burgerNav, { duration: 0.1, autoAlpha: 1, display: 'block' })
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 1, display: 'block' }, 0)
       .fromTo(burgerNav, { yPercent: -100 }, { yPercent: 0 }, 0)
+      .to(burgerNav, {duration: 2, ease: "power4.out", backgroundSize: "100% 100%" }, 0.7)
     return tl;
 
   }
@@ -52,6 +53,7 @@ const initBurger = () => {
     tl.to(burgerNav, { yPercent: 100 })
       .to(burgerNav, { duration: 0.1, autoAlpha: 0 }, 0.7)
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 0, display: 'none' }, 0.7)
+      .to(burgerNav, { duration: 0.1, ease: "power4.easeOut", backgroundSize: "130% 130%" }, 0.7)
     return tl;
 
   }
