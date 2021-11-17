@@ -87,6 +87,24 @@ const initBurger = () => {
 
   }
 
+  const menuHover = () => {
+    const menuItems = [...document.querySelectorAll('.menu-item')];
+    console.log(menuItems);
+
+    menuItems.forEach(item => {
+
+      let word = item.children[0].children[0].innerText.split('');
+      console.log(word);
+      item.children[0].innerHTML = '';
+      word.forEach((letter, index) => {
+        item.children[0].innerHTML += `<span style="--index: ${index};"> ${letter}</span>`;
+      })
+
+    })
+  }
+
+  menuHover();
+
 };
 
 export { initBurger };
