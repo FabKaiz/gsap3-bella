@@ -135,15 +135,18 @@ function initPageTransitions() {
     views: [ // Use views to enbale Javascript or plugins on specific pages before or after transition
       {
         namespace: 'home',
-        beforeEnter: () => {
-        },
         afterEnter: () => {
           hoverReveal();
           portfolioHover();
-          
         },
-        beforeLeave: () => {
-        }
+      },
+      {
+        namespace: 'page2',
+        afterEnter: () => {
+          hoverReveal();
+          portfolioHover();
+          initBurger();
+        },
       },
     ],
     transitions: [
