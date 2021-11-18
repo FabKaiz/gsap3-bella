@@ -6,6 +6,7 @@ const initBurger = () => {
   const splitText          = document.querySelectorAll('.split-text');
   const menuCounterAfter   = document.querySelectorAll('.menu-item');
   const root               = document.querySelector(':root');
+  const viewport           = document.querySelector('#viewport');
 
 
   burger.addEventListener('click', () => {
@@ -18,14 +19,14 @@ const initBurger = () => {
 
   const openNav = () => {
 
-    // Slide down and show the menu
     const tl = gsap.timeline({
       defaults: {
         duration: 0.8,
         ease: "power1.inOut",
       },
     });
-
+    
+    // Slide down and show the menu
     tl.set(burgerNav, { duration: 0.1, autoAlpha: 1, display: 'block' })
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 1, display: 'block' }, 0)
       .fromTo(burgerNav, { yPercent: -100 }, { yPercent: 0 }, 0)
@@ -39,22 +40,24 @@ const initBurger = () => {
         stagger: 0.1,
         '--padding-left':
         '-13vw',
-        '--counter-opacity': 0.5
+        '--counter-opacity': 0.4
       }, 1.3)
+      // Move the "body" behind the menu when it open
+      .to(viewport, { duration: 0.8, y: '300px' }, 0.1) 
       burger.classList.add('active'); // transform the burger to a cross
 
   }
   
   const closeNav = () => {
 
-    // Slide down and hide the menu
     const tl = gsap.timeline({
       defaults: {
         duration: 0.8,
         ease: "power1.inOut",
       },
     });
-
+    
+    // Slide down and hide the menu
     tl.to(burgerNav, { yPercent: 100 })
       .to(burgerNav, { duration: 0.1, autoAlpha: 0 }, 0.7)
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 0, display: 'none' }, 0.7)
@@ -76,6 +79,44 @@ const initBurger = () => {
         '--padding-left': '-23vw',
         '--counter-opacity': 0
       }, 0.7)
+      // Move the "body" behind the menu when it open
+      .fromTo(viewport, { y: '-300px' }, { duration: 0.7, y: 0 }, 0.1)
+      burger.classList.remove('active'); // transform the cross to a burger
+
+  }
+
+  const closeNavToTop = () => {
+
+    const tl = gsap.timeline({
+      defaults: {
+        duration: 0.8,
+        ease: "power1.inOut",
+      },
+    });
+    
+    // Slide down and hide the menu
+    tl.to(burgerNav, { yPercent: -100 })
+      .to(burgerNav, { duration: 0.1, autoAlpha: 0 }, 0.7)
+      .to(burgerNavContainer, { duration: 0.1, autoAlpha: 0, display: 'none' }, 0.7)
+      .to(burgerNav, {
+        duration: 0.1,
+        ease: "power4.easeOut",
+        backgroundSize: "130% 130%"
+      }, 0.7)
+      // Animate the navigation links back to normal
+      .to(splitText, {
+        duration: 0.1,
+        y: '100px',
+        autoAlpha: 0
+      }, 0.7)
+      // hide and move back the counter ::after element
+      .to(menuCounterAfter, {
+        duration: 0.1,
+        stagger: 0.1,
+        '--padding-left': '-23vw',
+        '--counter-opacity': 0
+      }, 0.7)
+      .fromTo(viewport, { y: '150px' }, { duration: 0.6, y: 0 }, 0.2)
       burger.classList.remove('active'); // transform the cross to a burger
 
   }
@@ -96,7 +137,7 @@ const initBurger = () => {
       cloneDiv.style.left = '0';
       cloneDiv.style.top = '0';
       item.appendChild(cloneDiv);
-      item.addEventListener('click', () => closeNav());
+      item.addEventListener('click', () => closeNavToTop());
       item.addEventListener('mouseenter', () => root.style.setProperty('--filter-opacity', '0.17'));
       item.addEventListener('mouseleave', () => root.style.setProperty('--filter-opacity', '0.1'));
     })
