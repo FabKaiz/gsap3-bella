@@ -111,6 +111,11 @@ function killScrollTriggers() {
   });
 }
 
+const removeEventListenerBurger = () => {
+  const elem = document.querySelector('.burger-menu');
+  elem.replaceWith(elem.cloneNode(true));
+}
+
 function initPageTransitions() {
   // Add the cursor loading class before the transition starts
   barba.hooks.before(() => {
@@ -139,14 +144,19 @@ function initPageTransitions() {
           hoverReveal();
           portfolioHover();
         },
+        beforeLeave: () => {
+          removeEventListenerBurger()
+        }
       },
       {
         namespace: 'page2',
         afterEnter: () => {
           hoverReveal();
           portfolioHover();
-          initBurger();
         },
+        beforeLeave: () => {
+          removeEventListenerBurger()
+        }
       },
     ],
     transitions: [

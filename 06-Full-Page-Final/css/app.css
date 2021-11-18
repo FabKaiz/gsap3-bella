@@ -143,7 +143,7 @@ body {
   top: 50%;
   left: auto;
   transform: translateY(-50%);
-  transition: all 0.5s var(--easing);
+  transition: background 0.5s var(--easing), transform 0.9s var(--easing);
   z-index: 2;
 }
 .burger-menu span::before, .burger-menu span::after {
