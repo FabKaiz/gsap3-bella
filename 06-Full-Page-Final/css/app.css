@@ -24,6 +24,7 @@
 
   --padding-left: -23vw;
   --counter-opacity: 0;
+  --filter-opacity: 0.1;
 }
 
 body {
@@ -178,8 +179,6 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 1;
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.904) 100%),
-     url(../img/Menu/aaron-huber-s95oB2n9jng-unsplash.jpg) center no-repeat;
   background-size: 130% 130%;
   opacity: 0;
   display: none;
@@ -199,14 +198,11 @@ body {
 }
 .burger-nav li {
   list-style: none;
-  /* overflow: hidden; */
 }
 .burger-nav a {
   text-decoration: none;
   color: #b0a7a4;
   transition: all 0.3s linear;
-
-  /* overflow: hidden; */
 }
 .burger-nav--container {
   overflow: hidden;
@@ -216,6 +212,16 @@ body {
   position: relative;
   opacity: 0;
   display: none;
+}
+.burger-nav:before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url(../img/Menu/aaron-huber-s95oB2n9jng-unsplash.jpg) center no-repeat;
+  background-size: cover;
+  filter: brightness(var(--filter-opacity));
+  transition: all 1.5s linear;
 }
 .split-text {
   display: inline-block;

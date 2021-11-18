@@ -5,6 +5,7 @@ const initBurger = () => {
   const burgerNavContainer = document.querySelector('.burger-nav--container');
   const splitText          = document.querySelectorAll('.split-text');
   const menuCounterAfter   = document.querySelectorAll('.menu-item');
+  const root               = document.querySelector(':root');
 
 
   burger.addEventListener('click', () => {
@@ -86,15 +87,12 @@ const initBurger = () => {
   const menuHover = () => {
 
     const menuItems = [...document.querySelectorAll('.menu-item')];
-    console.log(menuItems);
 
     menuItems.forEach(item => {
 
       let word = item.children[0].children[0].innerText.split('');
-      console.log(word);
       item.children[0].innerHTML = '';
       word.forEach((letter, index) => {
-        console.log(letter);
         item.children[0].innerHTML += `<span style="--index: ${index};">${letter}</span>`;
       })
       let cloneDiv = item.children[0].cloneNode(true);
@@ -102,7 +100,9 @@ const initBurger = () => {
       cloneDiv.style.left = '0';
       cloneDiv.style.top = '0';
       item.appendChild(cloneDiv);
-      item.addEventListener('click', () => closeNav())
+      item.addEventListener('click', () => closeNav());
+      item.addEventListener('mouseenter', () => root.style.setProperty('--filter-opacity', '0.17'));
+      item.addEventListener('mouseleave', () => root.style.setProperty('--filter-opacity', '0.1'));
     })
 
   }
