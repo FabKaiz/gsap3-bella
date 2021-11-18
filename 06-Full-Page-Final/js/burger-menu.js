@@ -43,8 +43,6 @@ const initBurger = () => {
       }, 1.3)
       burger.classList.add('active'); // transform the burger to a cross
 
-    return tl;
-
   }
   
   const closeNav = () => {
@@ -79,8 +77,6 @@ const initBurger = () => {
         '--counter-opacity': 0
       }, 0.7)
       burger.classList.remove('active'); // transform the cross to a burger
-
-    return tl;
 
   }
 
