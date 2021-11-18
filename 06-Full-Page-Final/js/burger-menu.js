@@ -4,21 +4,15 @@ const initBurger = () => {
   const burgerNav          = document.querySelector('.burger-nav');
   const burgerNavContainer = document.querySelector('.burger-nav--container');
   const splitText          = document.querySelectorAll('.split-text');
-  const menuCounterAfter = document.querySelectorAll('.menu-item');
+  const menuCounterAfter   = document.querySelectorAll('.menu-item');
 
 
   burger.addEventListener('click', () => {
-
+    // If no animation is playing on the nav then open / close the nav,
+    // prevent for the user clicking multiple time on the menu
     if (!gsap.isTweening(burgerNav)) {
-      if (burger.classList.contains('active') ) {
-        burger.classList.remove('active');
-        closeNav();
-      } else {
-          burger.classList.add('active');
-          openNav();
-      }
+      burger.classList.contains('active') ? closeNav() : openNav();
     }
-
   });
 
   const openNav = () => {
@@ -46,6 +40,7 @@ const initBurger = () => {
         '-13vw',
         '--counter-opacity': 0.5
       }, 1.3)
+      burger.classList.add('active'); // transform the burger to a cross
 
     return tl;
 
@@ -82,6 +77,7 @@ const initBurger = () => {
         '--padding-left': '-23vw',
         '--counter-opacity': 0
       }, 0.7)
+      burger.classList.remove('active'); // transform the cross to a burger
 
     return tl;
 
@@ -106,7 +102,7 @@ const initBurger = () => {
       cloneDiv.style.left = '0';
       cloneDiv.style.top = '0';
       item.appendChild(cloneDiv);
-
+      item.addEventListener('click', () => closeNav())
     })
 
   }

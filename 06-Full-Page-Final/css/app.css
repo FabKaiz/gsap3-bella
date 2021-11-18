@@ -241,6 +241,7 @@ body {
   right: var(--padding-left);
   top: 0;
   opacity: var(--counter-opacity);
+  pointer-events: none;
 }
 .menu-item-text {
   pointer-events: none;
