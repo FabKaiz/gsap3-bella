@@ -25,6 +25,8 @@
   --padding-left: -23vw;
   --counter-opacity: 0;
   --filter-opacity: 0.1;
+
+  --background-size: 130% 130%;
 }
 
 body {
@@ -219,9 +221,8 @@ body {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: url(../img/Menu/aaron-huber-s95oB2n9jng-unsplash.jpg) center no-repeat;
-  background-size: cover;
+  background-size: var(--background-size);
   filter: brightness(var(--filter-opacity));
-  transition: all 1.5s linear;
 }
 .split-text {
   display: inline-block;

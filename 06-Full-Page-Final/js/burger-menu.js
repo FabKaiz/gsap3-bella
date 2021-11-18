@@ -30,7 +30,7 @@ const initBurger = () => {
     tl.set(burgerNav, { duration: 0.1, autoAlpha: 1, display: 'block' })
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 1, display: 'block' }, 0)
       .fromTo(burgerNav, { yPercent: -100 }, { yPercent: 0 }, 0)
-      .to(burgerNav, {duration: 2, ease: "power4.out", backgroundSize: "100% 100%" }, 0.6)
+      .to(root, {duration: 2, ease: "slow(0.9, 0.1, false)", '--background-size': "100% 100%" }, 0.5)
       // Animate the navigation links
       .to(splitText, {duration: 0.8, y: '0', stagger: 0.1 }, 0.4)
       .to(splitText, {duration: 0.6, stagger: 0.1, autoAlpha: 1 }, 0.6)
@@ -61,10 +61,10 @@ const initBurger = () => {
     tl.to(burgerNav, { yPercent: 100 })
       .to(burgerNav, { duration: 0.1, autoAlpha: 0 }, 0.7)
       .to(burgerNavContainer, { duration: 0.1, autoAlpha: 0, display: 'none' }, 0.7)
-      .to(burgerNav, {
+      .to(root, {
         duration: 0.1,
         ease: "power4.easeOut",
-        backgroundSize: "130% 130%"
+        '--background-size': "130% 130%"
       }, 0.7)
       // Animate the navigation links back to normal
       .to(splitText, {
@@ -121,6 +121,19 @@ const initBurger = () => {
 
   }
 
+  const changeFilterOpacity = (opacity) => {
+
+    const tl = gsap.timeline({
+      defaults: {
+        duration: 1.5,
+        ease: "power1.inOut",
+      },
+    });
+
+    tl.to(root, { '--filter-opacity': `${opacity}` }, 0.);
+
+  }
+
   const menuHover = () => {
 
     const menuItems = [...document.querySelectorAll('.menu-item')];
@@ -138,8 +151,8 @@ const initBurger = () => {
       cloneDiv.style.top = '0';
       item.appendChild(cloneDiv);
       item.addEventListener('click', () => closeNavToTop());
-      item.addEventListener('mouseenter', () => root.style.setProperty('--filter-opacity', '0.17'));
-      item.addEventListener('mouseleave', () => root.style.setProperty('--filter-opacity', '0.1'));
+      item.addEventListener('mouseenter', () => changeFilterOpacity('0.17'));
+      item.addEventListener('mouseleave', () => changeFilterOpacity('0.1'));
     })
 
   }
