@@ -505,6 +505,26 @@ header h1 span {
 #hg__second-image {
   opacity: 0;
 }
+.h__left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  color: rgba(255, 0, 0, 0.985);
+}
+.h__right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  color: rgba(255, 0, 0, 0.985);
+}
 
 /* SAFARI perspective bug fix */
 @media not all and (min-resolution:.001dpcm) { 

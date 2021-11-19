@@ -2,8 +2,7 @@ const select = (e) => document.querySelector(e);
 const selectAll = (e) => document.querySelectorAll(e);
 
 const updateBodyColor = (color) => {
-  // gsap.to('.fill-background', { backgroundColor: color, ease: 'none'});
-  document.documentElement.style.setProperty("--bcg-fill-color", color);
+  gsap.to('.fill-background', { "--bcg-fill-color": color, ease: 'none'});
 };
 
 const getTextHeight = (textCopy) => {

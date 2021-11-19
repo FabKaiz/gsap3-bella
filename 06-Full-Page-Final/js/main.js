@@ -234,6 +234,7 @@ function initContent() {
   initPinSteps();
   initScrollTo();
   initBurger();
+  initSwitchHeaderImg();
 }
 
 // Smoooth Scrollbar
@@ -311,31 +312,45 @@ function initHeaderTilt() {
   select("header").addEventListener("mousemove", moveImages);
 }
 
-function switchHeaderImg(imageGrpIn, imageGrpOut) {
+// Header Image switching
+function switchImg(imageGrpIn, imageGrpOut) {
   const headerTimeline = gsap.timeline();
 
-  imageGrpOut.forEach((item) => {
-    headerTimeline.to(item, {duration: 0.4, ease: "power2.out", autoAlpha: 0 }, 0)
-  })
+  imageGrpOut.forEach((item) => headerTimeline.to(item, {duration: 0.3, ease: "power2.out", autoAlpha: 0 }, 0))
 
-  imageGrpIn.forEach((item) => {
-    headerTimeline.to(item, { duration: 0.4, ease: "power2.out", autoAlpha: 1 }, 0)
+  imageGrpIn.forEach((item) => headerTimeline.to(item, { duration: 0.4, ease: "power2.out", autoAlpha: 1 }, 0))
+}
+
+// Switch header img and change the background color
+function initSwitchHeaderImg() {
+  const secondImageGroup = gsap.utils.toArray('#hg__second-image');
+  const firstImageGroup = gsap.utils.toArray('#hg__first-image');
+  const leftHitbox = select('.h__left');
+  const rightHitbox = select('.h__right');
+
+  leftHitbox.addEventListener('mouseenter', () => {
+    switchImg(firstImageGroup, secondImageGroup);
+    updateBodyColor('#ccb28b')
+  });
+
+  rightHitbox.addEventListener('mouseenter', () => {
+    switchImg(secondImageGroup, firstImageGroup);
+    updateBodyColor('#ACB7AE')
   })
 }
 
+// Header image tilt 
 function moveImages(e) {
-  const { offsetX, offsetY, target } = e;
+  const { offsetY, target, clientX } = e;
   const { clientWidth, clientHeight } = target;
+  const ClientXby2 = clientX / 2;
 
   // get 0 0 in the center
-  const xPos = offsetX / clientWidth - 0.5;
+  const xPos = ClientXby2 / clientWidth - 0.5;
   const yPos = offsetY / clientHeight - 0.5;
 
   const leftImages = gsap.utils.toArray(".hg__left .hg__image");
   const rightImages = gsap.utils.toArray(".hg__right .hg__image");
-  const secondLargeImage = gsap.utils.toArray('#hg__second-image')
-  const firstLargeImage = gsap.utils.toArray('#hg__first-image')
-
 
   const modifier = (index) => index * 1.2 + 0.5;
 
@@ -370,17 +385,6 @@ function moveImages(e) {
     y: 120 * yPos,
     ease: "power4.out",
   });
-
-  // Change the background color and img in the header when the mouse go to the left or right
-  if (xPos > 0 && !gsap.isTweening(secondLargeImage)) { 
-    // mouse to the right side of the viewport
-    updateBodyColor('#ACB7AE')
-    switchHeaderImg(secondLargeImage, firstLargeImage);
-  } else if (xPos < 0 && !gsap.isTweening(firstLargeImage)) {
-    // mouse to the left side of the viewport
-    updateBodyColor('#ccb28b')
-    switchHeaderImg(firstLargeImage, secondLargeImage);
-  }
 }
 
 // Parallax Images
