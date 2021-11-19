@@ -426,4 +426,18 @@ function initScrollTo() {
       });
     });
   });
+
+  // Find all links of the menu and animate to the correct position
+  gsap.utils.toArray(".burger-nav a").forEach((link) => {
+    const target = link.getAttribute("href");
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      bodyScrollBar.scrollIntoView(select(target), {
+        damping: 0.01,
+        duration: 1,
+        offsetTop: 100,
+      });
+    });
+  });
 }
