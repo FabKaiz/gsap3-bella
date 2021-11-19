@@ -239,7 +239,7 @@ function initContent() {
 
 // Smoooth Scrollbar
 function initSmoothScrollbar() {
-  bodyScrollBar = Scrollbar.init(select("#viewport"), { damping: 0.07 });
+  bodyScrollBar = Scrollbar.init(select("#viewport"), { damping: 0.03 });
 
   // remove horizontal scrollbar
   bodyScrollBar.track.xAxis.element.remove();
@@ -316,9 +316,9 @@ function initHeaderTilt() {
 function switchImg(imageGrpIn, imageGrpOut) {
   const headerTimeline = gsap.timeline();
 
-  imageGrpOut.forEach((item) => headerTimeline.to(item, {duration: 0.3, ease: "power2.out", autoAlpha: 0 }, 0))
+  imageGrpOut.forEach((item) => headerTimeline.to(item, {duration: 0.4, ease: "power2.out", autoAlpha: 0 }, 0))
 
-  imageGrpIn.forEach((item) => headerTimeline.to(item, { duration: 0.4, ease: "power2.out", autoAlpha: 1 }, 0))
+  imageGrpIn.forEach((item) => headerTimeline.to(item, { duration: 0.5, ease: "power2.out", autoAlpha: 0.8 }, 0))
 }
 
 // Switch header img and change the background color
@@ -358,7 +358,7 @@ function moveImages(e) {
   leftImages.forEach((image, index) => {
     gsap.to(image, {
       duration: 1.4,
-      x: xPos * 20 * modifier(index),
+      x: xPos * 90 * modifier(index),
       y: yPos * 30 * modifier(index),
       rotationY: -(xPos * 25),
       rotationX: -(yPos * 10),
@@ -370,7 +370,7 @@ function moveImages(e) {
   rightImages.forEach((image, index) => {
     gsap.to(image, {
       duration: 1.4,
-      x: xPos * 20 * modifier(index),
+      x: xPos * 90 * modifier(index),
       y: -yPos * 30 * modifier(index),
       rotationY: -(xPos * 25),
       rotationX: -(yPos * 10),
