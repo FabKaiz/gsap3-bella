@@ -321,6 +321,7 @@ function moveImages(e) {
 
   const leftImages = gsap.utils.toArray(".hg__left .hg__image");
   const rightImages = gsap.utils.toArray(".hg__right .hg__image");
+  const leftLargeImage = select('.hg__image--l img')
 
   const modifier = (index) => index * 1.2 + 0.5;
 
@@ -355,6 +356,15 @@ function moveImages(e) {
     y: 120 * yPos,
     ease: "power4.out",
   });
+
+  // Change the background color when the mouse go to the left or right
+  if (xPos > 0) {
+    // mouse to the right side of the viewport
+    updateBodyColor('#ACB7AE')
+  } else if (xPos < 0) {
+    // mouse to the left side of the viewport
+    updateBodyColor('#ccb28b')
+  }
 }
 
 // Parallax Images
