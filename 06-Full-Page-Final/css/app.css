@@ -931,6 +931,17 @@ section {
   color: var(--text-color);
   margin: 0 calc(30vw + var(--h-gutter)) var(--v-spacing) 33.33vw;
 }
+.disclaimer__img img {
+  top: 5%;
+  height: 110%;
+  object-position: 50% 300%;
+}
+#disclaimer {
+  margin-bottom: 0vh;
+}
+#disclaimer__text {
+  margin-top: 5vw;
+}
 /* =Footer */
 .footer {
   height: 200px;
