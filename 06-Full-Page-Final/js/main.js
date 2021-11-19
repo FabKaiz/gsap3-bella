@@ -311,6 +311,18 @@ function initHeaderTilt() {
   select("header").addEventListener("mousemove", moveImages);
 }
 
+function switchHeaderImg(imageGrpIn, imageGrpOut) {
+  const headerTimeline = gsap.timeline();
+
+  imageGrpOut.forEach((item) => {
+    headerTimeline.to(item, {duration: 0.4, ease: "power2.out", autoAlpha: 0 }, 0)
+  })
+
+  imageGrpIn.forEach((item) => {
+    headerTimeline.to(item, { duration: 0.4, ease: "power2.out", autoAlpha: 1 }, 0)
+  })
+}
+
 function moveImages(e) {
   const { offsetX, offsetY, target } = e;
   const { clientWidth, clientHeight } = target;
@@ -321,7 +333,9 @@ function moveImages(e) {
 
   const leftImages = gsap.utils.toArray(".hg__left .hg__image");
   const rightImages = gsap.utils.toArray(".hg__right .hg__image");
-  const leftLargeImage = select('.hg__image--l img')
+  const secondLargeImage = gsap.utils.toArray('#hg__second-image')
+  const firstLargeImage = gsap.utils.toArray('#hg__first-image')
+
 
   const modifier = (index) => index * 1.2 + 0.5;
 
@@ -357,13 +371,15 @@ function moveImages(e) {
     ease: "power4.out",
   });
 
-  // Change the background color when the mouse go to the left or right
-  if (xPos > 0) {
+  // Change the background color and img in the header when the mouse go to the left or right
+  if (xPos > 0 && !gsap.isTweening(secondLargeImage)) { 
     // mouse to the right side of the viewport
     updateBodyColor('#ACB7AE')
-  } else if (xPos < 0) {
+    switchHeaderImg(secondLargeImage, firstLargeImage);
+  } else if (xPos < 0 && !gsap.isTweening(firstLargeImage)) {
     // mouse to the left side of the viewport
     updateBodyColor('#ccb28b')
+    switchHeaderImg(firstLargeImage, secondLargeImage);
   }
 }
 

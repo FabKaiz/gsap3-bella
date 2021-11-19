@@ -502,6 +502,9 @@ header h1 span {
   padding-bottom: 20vw;
   z-index: 1;
 }
+#hg__second-image {
+  opacity: 0;
+}
 
 /* SAFARI perspective bug fix */
 @media not all and (min-resolution:.001dpcm) { 
