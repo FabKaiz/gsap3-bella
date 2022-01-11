@@ -1,7 +1,7 @@
 # 'Bella' creative website
 Bella creative website using javascript, GSAP and ScrollTriger by GreenSock, Page transition with BarbaJs, smooth scrolling and many more.  
 
-## Result : 🛠 [Work in progress](https://fabkaiz.github.io/gsap3-bella) 🛠
+## Result : 🛠 [Here - Work in progress on other pages](https://fabkaiz.github.io/gsap3-bella) 🛠
 
 ### Thank's to Petr Tichy
 
